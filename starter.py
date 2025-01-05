@@ -33,7 +33,7 @@ import dotenv
 dotenv.load_dotenv()
 
 if sys.version_info < (3, 11, 0):
-    raise Exception("Python 3.11 为最低要求.")
+    raise Exception("Python 3.11 como requisito mínimo.")
 
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
@@ -56,10 +56,10 @@ voice_voice_id = "nPczCjzI2devNBz1zQrb"
 
 global_console = Console()
 if voice_api_key:
-    global_console.print("启动语音模式", style="green")
+    global_console.print("Iniciar o modo de voz", style="green")
     voice_client = ElevenLabs(api_key=voice_api_key)
 else:
-    global_console.print("语音模式关闭，找不到 ELEVENLABS_API_KEY", style="red")
+    global_console.print("O modo de voz está desativado e não pode ser encontrado ELEVENLABS_API_KEY", style="red")
 
 
 class AudioLoop:
@@ -87,7 +87,7 @@ class AudioLoop:
                         "role": "user",
                         "parts": [
                             {
-                                "text": "你是一名专业的英语口语指导老师，你需要帮助用户纠正语法发音，用户将会说一句英文，然后你会给出识别出来的英语是什么，并且告诉他发音中有什么问题，语法有什么错误，并且一步一步的纠正他的发音，当一次发音正确后，根据当前语句提出下一个场景的语句,然后一直循环这个过程，直到用户说OK，我要退出。你的回答永远要保持中文。如果明白了请回答OK两个字"
+                                "text": "Você é um instrutor profissional que fala inglês. Você precisa ajudar o usuário a corrigir a gramática e a pronúncia. O usuário falará uma frase em inglês e então você fornecerá o inglês reconhecido e informará quais problemas existem na pronúncia e nos erros gramaticais. e corrija sua pronúncia passo a passo. Quando a pronúncia estiver correta, a frase da próxima cena é proposta com base na frase atual e, em seguida, o processo é repetido até que o usuário diga OK, quero sair. Sempre mantenha suas respostas em português brasileiro. Se você entendeu, por favor responda OK"
                             }
                         ],
                     }
@@ -117,7 +117,7 @@ class AudioLoop:
             else:
                 if turn_complete:
                     if "".join(current_response).startswith("OK"):
-                        print("初始化完成 ✅")
+                        print("Inicialização concluída ✅")
                         return
 
     async def listen_audio(self):
@@ -132,7 +132,7 @@ class AudioLoop:
         )
 
         console = global_console
-        console.print("🎤 说一句英语吧！比如: What is blockchain?", style="yellow")
+        console.print("🎤 Fale uma frase em inglês! por exemplo: What is blockchain?", style="yellow")
 
         while True:
             data = await asyncio.to_thread(stream.read, CHUNK_SIZE)
@@ -175,7 +175,7 @@ class AudioLoop:
         current_response = []
         async for raw_response in self.ws:
             if self.running_step == 1:
-                console.print("\n♻️ 处理中：", end="")
+                console.print("\n♻️ processando：", end="")
                 self.running_step += 1
             response = json.loads(raw_response)
 
@@ -216,9 +216,9 @@ class AudioLoop:
                                 )
                                 play(voice_stream)
 
-                            console.print("🙎 声音播放中........", style="yellow")
+                            console.print("🙎 O som está sendo executado........", style="yellow")
                             await asyncio.to_thread(play_audio)
-                            console.print("🙎 播放完毕", style="green")
+                            console.print("🙎 Fim do jogo", style="green")
                         self.running_step = 0
 
     async def run(self):
@@ -229,9 +229,9 @@ class AudioLoop:
             else None
         )
         if proxy:
-            console.print("使用代理", style="yellow")
+            console.print("Usando proxy", style="yellow")
         else:
-            console.print("不使用代理", style="yellow")
+            console.print("Não usando proxy", style="yellow")
         async with (
             proxy_connect(
                 uri,
@@ -242,7 +242,7 @@ class AudioLoop:
             else connect(uri)
         ) as ws:
             self.ws = ws
-            console.print("Gemini 英语口语助手", style="green", highlight=True)
+            console.print("Assistente de Inglês Gemini", style="green", highlight=True)
             console.print("Make by twitter: @BoxMrChen", style="blue")
             console.print(
                 "============================================", style="yellow"
