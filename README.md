@@ -83,10 +83,10 @@ python starter.py
 - ♻️ : Processamento
 - 🤖 : Feedback de IA
 
-## licença
+## Licença
 
 MIT
 
-## contribuir
+## Contribuições
 
-Submissões Issue são bem vindas e Pull Request！
+Submissões **Issue** e **Pull Request** são bem vindas！

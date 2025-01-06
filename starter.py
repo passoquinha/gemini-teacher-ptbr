@@ -56,7 +56,7 @@ voice_voice_id = "nPczCjzI2devNBz1zQrb"
 
 global_console = Console()
 if voice_api_key:
-    global_console.print("Iniciar o modo de voz", style="green")
+    global_console.print("Iniciando modo de voz", style="green")
     voice_client = ElevenLabs(api_key=voice_api_key)
 else:
     global_console.print("O modo de voz está desativado e não pode ser encontrado ELEVENLABS_API_KEY", style="red")
